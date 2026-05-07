@@ -1,0 +1,2 @@
+class CodeChunk < ApplicationRecord
+end
