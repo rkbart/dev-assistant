@@ -1,6 +1,6 @@
-require 'net/http'
-require 'uri'
-require 'json'
+require "net/http"
+require "uri"
+require "json"
 
 class LlmService
   OLLAMA_URL = URI("http://localhost:11434/api/generate")
