@@ -7,13 +7,19 @@ class LlmService
 
   def self.ask(prompt)
     http = Net::HTTP.new(OLLAMA_URL.host, OLLAMA_URL.port)
+    http.read_timeout = 120
+    http.open_timeout = 10
+    
     request = Net::HTTP::Post.new(OLLAMA_URL)
     request["Content-Type"] = "application/json"
 
     request.body = {
-      model: "mistral",
+      model: "phi3",  # Faster model than mistral
       prompt: prompt,
-      stream: false
+      stream: false,
+      options: {
+        num_predict: 500  # Limit output tokens
+      }
     }.to_json
 
     response = http.request(request)
